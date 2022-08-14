@@ -3,8 +3,17 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'pw-gen';
+  password = '';
+
+  onButtonClick() {
+    this.password = 'My password';
+    console.log('Button Clicked');
+  }
+
+  getPassword() {
+    return this.password;
+  }
 }
