@@ -64,10 +64,6 @@ export class SignupComponent implements OnInit {
       // refer to the subscribe object. To get access
       // to properties on component bind it by using
       // arrow function
-      next: (response) => {
-        // Nav to some other route
-        console.log(this);
-      },
       error: (err) => {
         if (!err.status) {
           this.authForm.setErrors({ noConnection: true });

@@ -1,0 +1,66 @@
+{{ form.get("username")?.errors | json }}
+
+<div>
+  <h1>Sign Up</h1>
+  <form
+    *ngIf="!signUpSuccess; else successMessage"
+    data-testid="form-sign-up"
+    (ngSubmit)="onClickSignup()"
+    [formGroup]="form"
+  >
+    <div>
+      <label for="username">Username: </label>
+      <input
+        id="username"
+        placeholder="Enter username"
+        name="username"
+        formControlName="username"
+      />
+      <div
+        data-testid="username-validation"
+        *ngIf="form.get('username')?.errors"
+      >
+        Username is required
+      </div>
+    </div>
+    <div>
+      <label for="email">Email: </label>
+      <input
+        id="email"
+        placeholder="Enter email"
+        name="email"
+        formControlName="email"
+      />
+    </div>
+    <div>
+      <label for="password">Password: </label>
+      <input
+        id="password"
+        placeholder="Enter password"
+        type="password"
+        name="password"
+        formControlName="password"
+      />
+    </div>
+    <div>
+      <label for="passwordConfirmation">Confirm Password: </label>
+      <input
+        id="passwordConfirmation"
+        placeholder="Confirm password"
+        type="password"
+        name="passwordConfirmation"
+        formControlName="passwordConfirmation"
+      />
+    </div>
+    <div>
+      <app-button [disabled]="isDisabled()" [apiProgress]="apiProgress">
+        Sign Up
+      </app-button>
+    </div>
+  </form>
+  <ng-template #successMessage>
+    <app-alert
+      text="Please check your email to activate your account"
+    ></app-alert>
+  </ng-template>
+</div>
