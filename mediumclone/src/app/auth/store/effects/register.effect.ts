@@ -18,8 +18,10 @@ export class RegisterEffect {
     this.actions$.pipe(
       ofType(registerAction),
       switchMap(({ request }) => {
+        console.log(request);
         return this.authService.register(request).pipe(
           map((currentUser: ICurrentUser) => {
+            console.log(currentUser);
             this.persistanceService.set('accessToken', currentUser.token);
             return registerSuccessAction({ currentUser });
           }),

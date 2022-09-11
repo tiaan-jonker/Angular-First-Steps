@@ -12,12 +12,13 @@ import { ICurrentUser } from 'src/app/shared/types/current-user.interface';
 })
 export class AuthService {
   baseUrl: string = environment.apiUrl;
-
-  getUser(response: IAuthResponse): ICurrentUser {
-    return response.user;
-  }
+  randomValue: any;
 
   constructor(private http: HttpClient) {}
+
+  getUser(response: any): ICurrentUser {
+    return response.user;
+  }
 
   register(data: IRegisterReq): Observable<ICurrentUser> {
     return this.http
@@ -32,5 +33,12 @@ export class AuthService {
         // below same as above
         .pipe(map((response: IAuthResponse) => response.user))
     );
+  }
+
+  getCurrentUser(): Observable<ICurrentUser> {
+    this.randomValue = this.http
+      .get(`${this.baseUrl}/user`)
+      .pipe(map(this.getUser));
+    return this.http.get(`${this.baseUrl}/user`).pipe(map(this.getUser));
   }
 }

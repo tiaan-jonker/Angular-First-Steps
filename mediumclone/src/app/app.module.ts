@@ -1,3 +1,4 @@
+import { TopBarModule } from './shared/modules/top-bar/top-bar.module';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -23,6 +24,7 @@ import { environment } from '../environments/environment';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
+    TopBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
