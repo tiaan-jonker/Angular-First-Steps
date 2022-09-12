@@ -39,6 +39,7 @@ export class AuthService {
     this.randomValue = this.http
       .get(`${this.baseUrl}/user`)
       .pipe(map(this.getUser));
+    console.log(this.randomValue);
     return this.http.get(`${this.baseUrl}/user`).pipe(map(this.getUser));
   }
 }

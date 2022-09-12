@@ -1,3 +1,7 @@
+import { GlobalFeedModule } from './global-feed/global-feed.module';
+import { AuthInterceptor } from './shared/services/auth-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { PersistanceService } from './shared/services/persistance.service';
 import { TopBarModule } from './shared/modules/top-bar/top-bar.module';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { environment } from '../environments/environment';
+import { FeedComponent } from './shared/modules/feed/components/feed/feed.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,8 +30,16 @@ import { environment } from '../environments/environment';
     }),
     EffectsModule.forRoot([]),
     TopBarModule,
+    GlobalFeedModule,
   ],
-  providers: [],
+  providers: [
+    PersistanceService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

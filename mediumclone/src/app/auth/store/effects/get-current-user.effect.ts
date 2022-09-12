@@ -18,7 +18,12 @@ export class GetCurrentUserEffect {
       switchMap(() => {
         return this.authService.getCurrentUser().pipe(
           map((currentUser: ICurrentUser) => {
-            // this.persistanceService.set('accessToken', currentUser.token);
+            // const token = this.persistanceService.get('accessToken');
+
+            // if(!token) {
+            //   return of(getCurrentUserFailureAction())
+            // }
+
             return getCurrentUserSuccessAction({ currentUser });
           }),
 
