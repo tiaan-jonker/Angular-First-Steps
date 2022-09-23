@@ -1,3 +1,7 @@
+import { PaginationModule } from './../pagination/pagination.module';
+import { LoadingModule } from './../loading/loading.module';
+import { ErrorMessageModule } from './../error-message/error-message.module';
+import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { GetFeedEffect } from './store/effects/getFeed.effect';
 import { EffectsModule } from '@ngrx/effects';
@@ -13,6 +17,10 @@ import { reducers } from './store/reducers';
     CommonModule,
     EffectsModule.forFeature([GetFeedEffect]),
     StoreModule.forFeature('feed', reducers),
+    RouterModule,
+    ErrorMessageModule,
+    LoadingModule,
+    PaginationModule,
   ],
   exports: [FeedComponent],
   providers: [FeedService],
